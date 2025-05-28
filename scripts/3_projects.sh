@@ -5,8 +5,8 @@ mkdir -p /projects/work
 
 # common
 git clone https://github.com/iypetrov/vault.git /projects/common/vault
-ansible-vault decrypt /projects/common/vault/.ssh/*
-ansible-vault decrypt /projects/common/vault/auth_codes/*
+find .ssh -type f -exec ansible-vault decrypt --ask-vault-pass {} \;
+find auth_codes -type f -exec ansible-vault decrypt --ask-vault-pass {} \;
 ln -sfn /projects/common/vault/.ssh /home/ipetrov/.ssh
 ln -sfn /projects/common/vault/auth_codes /home/ipetrov/auth_codes
 
