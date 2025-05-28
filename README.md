@@ -1,5 +1,4 @@
 ```bash
-sudo su
 apt update
 apt install -y git
 git clone https://github.com/iypetrov/bootstrap.git /projects/common/bootstrap
