@@ -1,4 +1,5 @@
 ```bash
+sudo usermod -aG sudo ipetrov
 apt update
 apt install -y git
 git clone https://github.com/iypetrov/bootstrap.git /projects/common/bootstrap
