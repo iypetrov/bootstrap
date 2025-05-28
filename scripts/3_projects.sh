@@ -5,11 +5,12 @@ mkdir -p /projects/work
 
 # common
 read -s -p "Vault password: " vault_pass
-echo "${vault_pass}" > /tmp/vault_pass
+echo
 
 git clone https://github.com/iypetrov/vault.git /projects/common/vault
-find /projects/common/vault/.ssh -type f -exec ansible-vault decrypt --vault-password-file /tmp/vault_pass {} \;
-find /projects/common/vault/auth_codes -type f -exec ansible-vault decrypt --vault-password-file /tmp/vault_pass {} \;
+find /projects/common/vault/.ssh -type f -exec ansible-vault decrypt --vault-password-file=<(echo "${vault_pass}") {} \;
+find /projects/common/vault/auth_codes -type f -exec ansible-vault decrypt --vault-password-file=<(echo "${vault_pass}") {} \;
+
 ln -sfn /projects/common/vault/.ssh /home/ipetrov
 ln -sfn /projects/common/vault/auth_codes /home/ipetrov
 
