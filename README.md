@@ -1,5 +1,5 @@
 ```bash
-apt update && apt get git make
+apt update && apt install -y git make
 mkdir -p /projects/common
 mkdir -p /projects/personal
 mkdir -p /projects/work
