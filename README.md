@@ -1,5 +1,4 @@
 ```bash
-sudo su
 apt update
 apt install -y git
 mkdir -p /projects/common
