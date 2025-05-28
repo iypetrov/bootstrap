@@ -5,7 +5,6 @@ apt install -y \
     open-vm-tools-desktop \
     curl \
     wget \
-    git \
     tmux \
     vim \
     stow

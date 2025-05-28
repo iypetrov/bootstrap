@@ -1,6 +1,5 @@
 ```bash
-sudo su
-apt update && apt get git
+apt update && apt get git make
 mkdir -p /projects/common
 mkdir -p /projects/personal
 mkdir -p /projects/work
