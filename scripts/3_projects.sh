@@ -7,7 +7,8 @@ mkdir -p /projects/work
 git clone https://github.com/iypetrov/vault.git /projects/common/vault
 ansible-vault decrypt /projects/common/vault/.ssh/*
 ansible-vault decrypt /projects/common/vault/auth_codes/*
+
+git clone --branch universal-config-v2 git@github.com:iypetrov/.dotfiles.git /projects/common/.dotfiles
 stow -t /home/ipetrov .
 
-git clone git@github.com:iypetrov/.dotfiles.git /projects/common/.dotfiles
 git clone git@github.com:iypetrov/books.git /projects/common/books
