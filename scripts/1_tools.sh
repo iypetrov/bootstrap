@@ -1,12 +1,14 @@
 #!/bin/bash
 
 apt install -y \
-    open-vm-tools \
-    open-vm-tools-desktop \
     curl \
     wget \
     tmux \
     vim \
-    stow
+    stow \
+    software-properties-common
 
-systemctl enable --now vmtoolsd
+apt-add-repository --yes --update ppa:ansible/ansible
+
+apt install -y \
+    ansible

@@ -1,5 +1,6 @@
 ```bash
-apt update && apt install -y git make
+sudo apt update
+apt install -y git make
 mkdir -p /projects/common
 mkdir -p /projects/personal
 mkdir -p /projects/work
