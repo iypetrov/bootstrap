@@ -4,6 +4,7 @@ apt install -y \
     curl \
     wget \
     tmux \
+    make \
     vim \
     stow \
     software-properties-common
