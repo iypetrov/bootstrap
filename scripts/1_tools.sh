@@ -9,7 +9,8 @@ apt install -y \
     make \
     vim \
     stow \
-    software-properties-common
+    software-properties-common \
+    zsh
 
 apt-add-repository --yes --update ppa:ansible/ansible
 

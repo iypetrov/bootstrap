@@ -22,7 +22,4 @@ cd /projects/common
 stow --target=/home/ipetrov .dotfiles
 cd /home/ipetrov
 
-git -C /projects/common/vault remote set-url origin git@github.com:iypetrov/vault.git
-git -C /projects/common/.dotfiles remote set-url origin git@github.com:iypetrov/.dotfiles.git
-
 git clone git@github.com:iypetrov/books.git /projects/common/books
