@@ -17,7 +17,7 @@ rm -rf /home/ipetrov/.ssh
 ln -sfn /projects/common/vault/.ssh /home/ipetrov
 ln -sfn /projects/common/vault/auth_codes /home/ipetrov
 
-git clone --branch universal-config-v2 https://github.com/iypetrov/.dotfiles.git /projects/common/.dotfiles
+git clone https://github.com/iypetrov/.dotfiles.git /projects/common/.dotfiles
 cd /projects/common
 stow --target=/home/ipetrov .dotfiles
 cd /home/ipetrov
