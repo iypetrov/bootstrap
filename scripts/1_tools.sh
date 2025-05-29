@@ -24,7 +24,6 @@ mkdir -p /var/log/deps
 install_dep open-vm-tools
 install_dep open-vm-tools-desktop
 install_dep curl
-install_dep wget
 install_dep tmux
 install_dep make
 install_dep vim
@@ -32,6 +31,8 @@ install_dep stow
 install_dep software-properties-common
 install_dep zsh
 
-apt-add-repository --yes --update ppa:ansible/ansible
+echo "Setting up ansible ppa"
+apt-add-repository ppa:ansible/ansible > /dev/null 2>&1
+echo "Finished ansible ppa"
 
 install_dep ansible
