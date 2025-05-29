@@ -8,7 +8,9 @@ apt install -y \
     tmux \
     make \
     vim \
-    software-properties-common
+    stow \
+    software-properties-common \
+    zsh
 
 apt-add-repository --yes --update ppa:ansible/ansible
 

@@ -18,10 +18,11 @@ ln -sfn /projects/common/vault/.ssh /home/ipetrov
 ln -sfn /projects/common/vault/auth_codes /home/ipetrov
 
 git clone --branch universal-config-v2 https://github.com/iypetrov/.dotfiles.git /projects/common/.dotfiles
-ln -sfn /projects/common/.dotfiles /projects/common
+cd /projects/common
+stow --target=/home/ipetrov .dotfiles
+cd /home/ipetrov
 
 git -C /projects/common/vault remote set-url origin git@github.com:iypetrov/vault.git
 git -C /projects/common/.dotfiles remote set-url origin git@github.com:iypetrov/.dotfiles.git
 
 git clone git@github.com:iypetrov/books.git /projects/common/books
-ln -sfn /projects/common/books /projects/common
