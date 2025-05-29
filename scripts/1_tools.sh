@@ -30,6 +30,7 @@ install_dep vim
 install_dep stow
 install_dep software-properties-common
 install_dep zsh
+install_dep lazygit
 
 echo "Setting up ansible ppa"
 apt-add-repository ppa:ansible/ansible > /dev/null 2>&1
