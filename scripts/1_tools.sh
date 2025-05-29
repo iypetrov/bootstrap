@@ -10,7 +10,7 @@ function install_dep() {
         if apt install -y "${cmd}" > "/var/log/deps/${cmd}.log" 2>&1; then
             echo "✅ ${cmd} dependency installed successfully"
         else
-            echo "❌ ${cmd} dependency failed to installed"
+            echo "❌ ${cmd} dependency failed to install"
         fi
     fi
 }
