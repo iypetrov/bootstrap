@@ -4,7 +4,7 @@ function install_dep() {
     local cmd=$1
     
     if which "${cmd}" > /dev/null 2>&1; then
-        echo "🔕 Skipped isntalling ${cmd} dependency, already available"
+        echo "🔕 Skip isntalling ${cmd} dependency, already available"
     else
         echo "🔧 Installing ${cmd} dependency"
         if apt install -y "${cmd}" > "/var/log/deps/${cmd}.log" 2>&1; then
