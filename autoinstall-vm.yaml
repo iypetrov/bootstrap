@@ -9,6 +9,8 @@ autoinstall:
     - zsh
     - open-vm-tools
     - open-vm-tools-desktop
+    - git
+    - ansible
   user-data:
     users:
       - name: iypetrov
