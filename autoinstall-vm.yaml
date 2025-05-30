@@ -17,5 +17,3 @@ autoinstall:
         shell: /usr/bin/zsh
         groups: [adm, sudo]
         sudo: ["ALL=(ALL) NOPASSWD:ALL"]
-  late-commands:
-    - curtin in-target --target=/target chsh -s /usr/bin/zsh iypetrov
