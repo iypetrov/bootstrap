@@ -5,10 +5,6 @@ autoinstall:
     hostname: ubuntu-desktop
     username: iypetrov
     password: "$6$FTaVzKYrqMDCyUdo$Y0tvm1a.VU4eimUr8q8A.HtG2uLSIsekf1.zq0oCMC.4vo1Z5o4HpbGGaesVyu619P4qBS/ObY8KVbBxSd2Fg."
-  packages:
-    - git
-    - open-vm-tools
-    - open-vm-tools-desktop
   user-data:
     users:
       - name: iypetrov
