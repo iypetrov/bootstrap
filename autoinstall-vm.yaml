@@ -16,6 +16,3 @@ autoinstall:
     - git
     - open-vm-tools
     - open-vm-tools-desktop
-  late-commands:
-    - echo 'iypetrov ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/90-iypetrov
-    - echo 'exec sudo -i' >> /target/home/iypetrov/.bashrc
