@@ -22,8 +22,6 @@ function install_dep() {
 mkdir -p /var/log/deps
 
 install_dep zsh
-install_dep open-vm-tools
-install_dep open-vm-tools-desktop
 install_dep curl
 install_dep tmux
 install_dep make
