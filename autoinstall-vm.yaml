@@ -6,14 +6,19 @@ autoinstall:
     username: iypetrov
     password: "$6$FTaVzKYrqMDCyUdo$Y0tvm1a.VU4eimUr8q8A.HtG2uLSIsekf1.zq0oCMC.4vo1Z5o4HpbGGaesVyu619P4qBS/ObY8KVbBxSd2Fg."
   packages:
-    - zsh
+    - git
     - open-vm-tools
     - open-vm-tools-desktop
-    - git
-    - ansible
   user-data:
     users:
       - name: iypetrov
-        shell: /usr/bin/zsh
         groups: [adm, sudo]
+        shell: /bin/bash
         sudo: ["ALL=(ALL) NOPASSWD:ALL"]
+  locale: en_US
+  keyboard:
+    layout: us
+  storage:
+    layout:
+      name: direct
+  updates: security

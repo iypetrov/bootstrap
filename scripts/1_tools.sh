@@ -21,11 +21,12 @@ function install_dep() {
 
 mkdir -p /var/log/deps
 
+install_dep zsh
 install_dep curl
 install_dep tmux
 install_dep make
 install_dep vim
 install_dep stow
 install_dep software-properties-common
-install_dep zsh
 install_dep lazygit
+install_dep ansible
