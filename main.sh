@@ -56,6 +56,7 @@ newgrp docker
 # Setup projects
 sudo -u "$USERNAME" bash << EOF
 set -euo pipefail
+chsh -s $(which zsh)
 mkdir -p ~/projects/common ~/projects/personal ~/projects/work
 echo "${ANSIBLE_VAULT_PASSWORD}" > /tmp/ansible-vault-pass.txt
 git clone https://${GH_USERNAME}:${GH_PAT}@github.com/iypetrov/vault.git ~/projects/common/vault
