@@ -1,7 +1,6 @@
 ```bash
-apt update
-apt install -y git
-git clone https://github.com/iypetrov/bootstrap.git /projects/common/bootstrap
-bash /projects/common/bootstrap/init.sh
-chsh -s $(which zsh)
+sudo apt update
+sudo apt install -y git open-vm-tools open-vm-tools-desktop
+sudo git clone https://github.com/iypetrov/bootstrap.git /projects/common/bootstrap
+sudo bash /projects/common/bootstrap/main.sh
 ```

@@ -17,11 +17,7 @@ fi
 # Dependencies
 apt update
 apt install -y \
-  open-vm-tools \
-  open-vm-tools-desktop \
   curl \
-  wget \
-  git \
   unzip \
   zsh \
   stow \
@@ -37,6 +33,7 @@ apt install -y \
   make \
   software-properties-common \
   lazygit \
+  docker.io \
   silversearcher-ag
 
 # User 
@@ -48,8 +45,6 @@ echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" > "/etc/sudoers.d/$USERNAME"
 chmod 0440 "/etc/sudoers.d/$USERNAME"
 
 # Docker
-curl -fsSl https://get.docker.com | sh
-groupadd docker
 usermod -aG docker "$USERNAME"
 newgrp docker
 
