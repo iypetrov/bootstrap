@@ -45,6 +45,7 @@ chmod 0440 "/etc/sudoers.d/$USERNAME"
 # Setup projects
 sudo -u "$USERNAME" bash << EOF
 rm -rf /home/$USERNAME/.ssh
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 mkdir -p ~/projects/common ~/projects/personal ~/projects/work
 echo "${ANSIBLE_VAULT_PASSWORD}" > /tmp/ansible-vault-pass.txt
 git clone https://${GH_USERNAME}:${GH_PAT}@github.com/iypetrov/vault.git ~/projects/common/vault
