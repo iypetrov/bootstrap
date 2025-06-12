@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -euo pipefail
-
 USERNAME="ipetrov"
 read -rp "GitHub Username: " GH_USERNAME
 read -srp "GitHub Personal Access Token: " GH_PAT
@@ -44,14 +42,9 @@ usermod -aG sudo "$USERNAME"
 echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" > "/etc/sudoers.d/$USERNAME"
 chmod 0440 "/etc/sudoers.d/$USERNAME"
 
-# Docker
-usermod -aG docker "$USERNAME"
-newgrp docker
-
 # Setup projects
 sudo -u "$USERNAME" bash << EOF
-set -euo pipefail
-chsh -s $(which zsh)
+rm -rf /home/$USERNAME/.ssh
 mkdir -p ~/projects/common ~/projects/personal ~/projects/work
 echo "${ANSIBLE_VAULT_PASSWORD}" > /tmp/ansible-vault-pass.txt
 git clone https://${GH_USERNAME}:${GH_PAT}@github.com/iypetrov/vault.git ~/projects/common/vault
@@ -67,3 +60,10 @@ find ~/projects/common/vault/.ssh -type f -exec ansible-vault encrypt --vault-pa
 find ~/projects/common/vault/.aws -type f -exec ansible-vault encrypt --vault-password-file /tmp/ansible-vault-pass.txt {} \;
 rm /tmp/ansible-vault-pass.txt
 EOF
+
+# Zsh
+chsh -s "$(which zsh)" "$USERNAME"
+
+# Docker
+usermod -aG docker "$USERNAME"
+newgrp docker
