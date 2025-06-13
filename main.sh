@@ -68,6 +68,7 @@ chmod 0440 "/etc/sudoers.d/$USERNAME"
 mv /projects/common/bootstrap /home/$USERNAME/projects/common/bootstrap
 sudo -u "$USERNAME" bash << EOF
 # setup
+asdf install
 rm -rf /home/$USERNAME/.ssh
 rm -rf /home/$USERNAME/.tmux/plugins/tpm
 git clone https://github.com/tmux-plugins/tpm /home/$USERNAME/.tmux/plugins/tpm
