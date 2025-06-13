@@ -51,7 +51,7 @@ ln -sfn /home/$USERNAME/projects/common/vault/.ssh /home/$USERNAME
 ln -sfn /home/$USERNAME/projects/common/vault/.aws /home/$USERNAME
 git clone https://${GH_USERNAME}:${GH_PAT}@github.com/iypetrov/.dotfiles.git /home/$USERNAME/projects/common/.dotfiles
 cd /home/$USERNAME/projects/common
-stow --target=/home/$USERNAME/.dotfiles
+stow --target=/home/$USERNAME .dotfiles
 git clone https://github.com/tmux-plugins/tpm /home/$USERNAME/.tmux/plugins/tpm
 cd /home/$USERNAME/projects/common/vault
 git remote set-url origin git@github.com:iypetrov/vault.git
@@ -95,6 +95,7 @@ git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrest
 git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrestricted/infrastructure/salt/pillar.git
 
 git clone https://github.com/asdf-vm/asdf.git /home/$USERNAME/.asdf --branch v0.11.0
+source /home/$USERNAME/.bashrc
 asdf plugin add delta
 asdf plugin add nodejs
 asdf plugin add python
