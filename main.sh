@@ -21,7 +21,7 @@ apt install -y \
   stow \
   ansible \
   sudo \
-  vim \
+  vim-gtk3 \
   tmux \
   fzf \
   build-essential \
@@ -61,6 +61,10 @@ stow --target=/home/$USERNAME/.dotfiles
 git clone https://github.com/tmux-plugins/tpm /home/$USERNAME/.tmux/plugins/tpm
 find /home/$USERNAME/projects/common/vault/.ssh -type f -exec ansible-vault encrypt --vault-password-file /tmp/ansible-vault-pass.txt {} \;
 find /home/$USERNAME/projects/common/vault/.aws -type f -exec ansible-vault encrypt --vault-password-file /tmp/ansible-vault-pass.txt {} \;
+cd /home/$USERNAME/projects/common/vault
+git remote set-url origin git@github.com:iypetrov/vault.git
+cd /home/$USERNAME/projects/common/.dotfiles
+git remote set-url origin git@github.com:iypetrov/.dotfiles.git
 rm /tmp/ansible-vault-pass.txt
 
 # common
