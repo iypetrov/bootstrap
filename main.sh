@@ -17,7 +17,6 @@ apt update
 apt install -y \
   curl \
   unzip \
-  zsh \
   stow \
   ansible \
   sudo \
@@ -37,13 +36,7 @@ apt install -y \
   jq \
   yq
 
-# tmux
-touch /home/$USERNAME/.tmux/last_session
-
 # User 
-if ! id "$USERNAME" &>/dev/null; then
-  useradd -m -s /bin/zsh "$USERNAME"
-fi
 usermod -aG sudo "$USERNAME"
 echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" > "/etc/sudoers.d/$USERNAME"
 chmod 0440 "/etc/sudoers.d/$USERNAME"
@@ -110,10 +103,6 @@ EOF
 # tmux
 touch "/home/$USERNAME/.tmux/last_session"
 
-# zsh
-chsh -s "$(which zsh)" "$USERNAME"
-
 # docker
 usermod -aG docker "$USERNAME"
 newgrp docker
-
