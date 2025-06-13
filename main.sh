@@ -101,7 +101,7 @@ git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrest
 EOF
 
 # tmux
-touch "/home/$USERNAME/.tmux/last_session"
+touch /home/$USERNAME/.tmux/last_session
 
 # docker
 usermod -aG docker "$USERNAME"
