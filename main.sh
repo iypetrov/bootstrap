@@ -1,7 +1,5 @@
 #!/bin/bash
 
-USERNAME="ipetrov"
-read -rp "GitHub Username: " GH_USERNAME
 read -rp "GitHub Personal Access Token: " GH_PAT
 read -rp "Ansible Vault Password: " ANSIBLE_VAULT_PASSWORD
 
@@ -34,61 +32,55 @@ apt install -y \
   jq \
   yq
 
-# User 
-usermod -aG sudo "$USERNAME"
-echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" > "/etc/sudoers.d/$USERNAME"
-chmod 0440 "/etc/sudoers.d/$USERNAME"
-
-sudo -u "$USERNAME" bash << EOF
 # setup
-rm -rf /home/$USERNAME/.bashrc
-rm -rf /home/$USERNAME/.ssh
-rm -rf /home/$USERNAME/.tmux/plugins/tpm
-git clone https://github.com/tmux-plugins/tpm /home/$USERNAME/.tmux/plugins/tpm
-mkdir -p /home/$USERNAME/projects/common /home/$USERNAME/projects/personal /home/$USERNAME/projects/ip812 /home/$USERNAME/projects/avalon /home/$USERNAME/projects/work
+rm -rf /root/.bashrc
+rm -rf /root/.ssh
+rm -rf /root/.tmux/plugins/tpm
+git clone https://github.com/tmux-plugins/tpm /root/.tmux/plugins/tpm
+mkdir -p /root/projects/common /root/projects/personal /root/projects/ip812 /root/projects/avalon /root/projects/work
 echo "${ANSIBLE_VAULT_PASSWORD}" > /tmp/ansible-vault-pass.txt
-git clone https://${GH_USERNAME}:${GH_PAT}@github.com/iypetrov/vault.git /home/$USERNAME/projects/common/vault
-find /home/$USERNAME/projects/common/vault/.ssh -type f -exec ansible-vault decrypt --vault-password-file /tmp/ansible-vault-pass.txt {} \;
-find /home/$USERNAME/projects/common/vault/.aws -type f -exec ansible-vault decrypt --vault-password-file /tmp/ansible-vault-pass.txt {} \;
-ln -sfn /home/$USERNAME/projects/common/vault/.ssh /home/$USERNAME
-ln -sfn /home/$USERNAME/projects/common/vault/.aws /home/$USERNAME
-git clone https://${GH_USERNAME}:${GH_PAT}@github.com/iypetrov/.dotfiles.git /home/$USERNAME/projects/common/.dotfiles
-cd /home/$USERNAME/projects/common
-stow --target=/home/$USERNAME .dotfiles
-git clone https://github.com/tmux-plugins/tpm /home/$USERNAME/.tmux/plugins/tpm
-cd /home/$USERNAME/projects/common/vault
+git clone https://${GH_USERNAME}:${GH_PAT}@github.com/iypetrov/vault.git /root/projects/common/vault
+find /root/projects/common/vault/.ssh -type f -exec ansible-vault decrypt --vault-password-file /tmp/ansible-vault-pass.txt {} \;
+find /root/projects/common/vault/.aws -type f -exec ansible-vault decrypt --vault-password-file /tmp/ansible-vault-pass.txt {} \;
+ln -sfn /root/projects/common/vault/.ssh /root
+ln -sfn /root/projects/common/vault/.aws /root
+git clone https://${GH_USERNAME}:${GH_PAT}@github.com/iypetrov/.dotfiles.git /root/projects/common/.dotfiles
+cd /root/projects/common
+stow --target=/root .dotfiles
+git clone https://github.com/tmux-plugins/tpm /root/.tmux/plugins/tpm
+cd /root/projects/common/vault
 git remote set-url origin git@github.com:iypetrov/vault.git
-cd /home/$USERNAME/projects/common/.dotfiles
+cd /root/projects/common/.dotfiles
 git remote set-url origin git@github.com:iypetrov/.dotfiles.git
 rm /tmp/ansible-vault-pass.txt
 
 # # common
-# cd /home/$USERNAME/projects/common
+# cd /root/projects/common
 # git clone git@github.com:iypetrov/books.git
 # 
 # # personal
-# cd /home/$USERNAME/projects/personal
+# cd /root/projects/personal
 # git clone git@github.com:iypetrov/go-playground.git
 # git clone git@github.com:iypetrov/aws-playground.git
 # git clone git@github.com:iypetrov/k8s-playground.git
 # git clone git@github.com:iypetrov/lambdas.git
 # 
 # # ip812
-# cd /home/$USERNAME/projects/ip812
+# cd /root/projects/ip812
 # git clone git@github.com:ip812/infra.git
 # git clone git@github.com:ip812/go-template.git
 # git clone git@github.com:ip812/lambdas.git
 # 
 # # avalon
-# cd /home/$USERNAME/projects/avalon
+# cd /root/projects/avalon
 # git clone git@github.com:avalonpharma/infra.git
 # git clone git@github.com:avalonpharma/avalon-ui.git
 # git clone git@github.com:avalonpharma/avalon-rest.git
 # 
 # # work
 # CPX_USERNAME="ilia.petrov"
-# CPX_PAT="$(cat /home/$USERNAME/projects/common/vault/auth_codes/cpx-gitlab.txt)"
-# cd /home/$USERNAME/projects/work
+# CPX_PAT="$(cat /root/projects/common/vault/auth_codes/cpx-gitlab.txt)"
+# cd /root/projects/work
 # git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrestricted/infrastructure/terraform/tf-de-gasx.git
 # git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrestricted/infrastructure/terraform/tf-de-lab52.git
 # git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrestricted/infrastructure/terraform/tf-de-lab12.git
@@ -97,9 +89,9 @@ rm /tmp/ansible-vault-pass.txt
 # git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrestricted/infrastructure/salt/salt.git
 # git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrestricted/infrastructure/salt/pillar.git
 
-git clone https://github.com/asdf-vm/asdf.git /home/$USERNAME/.asdf --branch v0.11.0
-echo ". $HOME/.asdf/asdf.sh" >> /home/$USERNAME/.bashrc
-source /home/$USERNAME/.bashrc
+git clone https://github.com/asdf-vm/asdf.git /root/.asdf --branch v0.11.0
+echo ". \$HOME/.asdf/asdf.sh" >> /root/.bashrc
+source /root/.bashrc
 asdf plugin add delta
 asdf plugin add nodejs
 asdf plugin add python
@@ -109,11 +101,10 @@ asdf plugin add awscli
 asdf plugin add kubectl
 asdf plugin add terraform
 asdf install
-EOF
 
 # tmux
-touch /home/$USERNAME/.tmux/last_session
+touch /root/.tmux/last_session
 
 # docker
-usermod -aG docker "$USERNAME"
+usermod -aG docker root
 newgrp docker
