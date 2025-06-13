@@ -39,9 +39,11 @@ usermod -aG sudo "$USERNAME"
 echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" > "/etc/sudoers.d/$USERNAME"
 chmod 0440 "/etc/sudoers.d/$USERNAME"
 
+sudo -u "$USERNAME" bash << EOF
 # setup
 rm -rf /home/$USERNAME/.bashrc
 rm -rf /home/$USERNAME/.ssh
+rm -rf /home/$USERNAME/.tmux/plugins/tpm
 git clone https://github.com/tmux-plugins/tpm /home/$USERNAME/.tmux/plugins/tpm
 mkdir -p /home/$USERNAME/projects/common /home/$USERNAME/projects/personal /home/$USERNAME/projects/ip812 /home/$USERNAME/projects/avalon /home/$USERNAME/projects/work
 echo "${ANSIBLE_VAULT_PASSWORD}" > /tmp/ansible-vault-pass.txt
@@ -107,6 +109,7 @@ asdf plugin add awscli
 asdf plugin add kubectl
 asdf plugin add terraform
 asdf install
+EOF
 
 # tmux
 touch /home/$USERNAME/.tmux/last_session
