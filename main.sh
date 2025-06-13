@@ -2,9 +2,9 @@
 
 USERNAME="ipetrov"
 read -rp "GitHub Username: " GH_USERNAME
-read -srp "GitHub Personal Access Token: " GH_PAT
+read -sr "GitHub Personal Access Token: " GH_PAT
 echo
-read -srp "Ansible Vault Password: " ANSIBLE_VAULT_PASSWORD
+read -sr "Ansible Vault Password: " ANSIBLE_VAULT_PASSWORD
 echo
 
 if [[ $EUID -ne 0 ]]; then
