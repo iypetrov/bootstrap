@@ -44,27 +44,37 @@ chmod 0440 "/etc/sudoers.d/$USERNAME"
 
 # Setup projects
 sudo -u "$USERNAME" bash << EOF
+# setup
 rm -rf /home/$USERNAME/.ssh
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-mkdir -p ~/projects/common ~/projects/personal ~/projects/work
+git clone https://github.com/tmux-plugins/tpm /home/$USERNAME/.tmux/plugins/tpm
+mkdir -p /home/$USERNAME/projects/common /home/$USERNAME/projects/personal /home/$USERNAME/projects/ip812 /home/$USERNAME/projects/avalon /home/$USERNAME/projects/work
 echo "${ANSIBLE_VAULT_PASSWORD}" > /tmp/ansible-vault-pass.txt
-git clone https://${GH_USERNAME}:${GH_PAT}@github.com/iypetrov/vault.git ~/projects/common/vault
-find ~/projects/common/vault/.ssh -type f -exec ansible-vault decrypt --vault-password-file /tmp/ansible-vault-pass.txt {} \;
-find ~/projects/common/vault/.aws -type f -exec ansible-vault decrypt --vault-password-file /tmp/ansible-vault-pass.txt {} \;
-ln -sfn ~/projects/common/vault/.ssh ~/
-ln -sfn ~/projects/common/vault/.aws ~/
-git clone https://${GH_USERNAME}:${GH_PAT}@github.com/iypetrov/.dotfiles.git ~/projects/common/.dotfiles
-cd ~/projects/common
+git clone https://${GH_USERNAME}:${GH_PAT}@github.com/iypetrov/vault.git /home/$USERNAME/projects/common/vault
+find /home/$USERNAME/projects/common/vault/.ssh -type f -exec ansible-vault decrypt --vault-password-file /tmp/ansible-vault-pass.txt {} \;
+find /home/$USERNAME/projects/common/vault/.aws -type f -exec ansible-vault decrypt --vault-password-file /tmp/ansible-vault-pass.txt {} \;
+ln -sfn /home/$USERNAME/projects/common/vault/.ssh /home/$USERNAME
+ln -sfn /home/$USERNAME/projects/common/vault/.aws /home/$USERNAME
+git clone https://${GH_USERNAME}:${GH_PAT}@github.com/iypetrov/.dotfiles.git /home/$USERNAME/projects/common/.dotfiles
+cd /home/$USERNAME/projects/common
 stow --target=/home/ipetrov .dotfiles
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-find ~/projects/common/vault/.ssh -type f -exec ansible-vault encrypt --vault-password-file /tmp/ansible-vault-pass.txt {} \;
-find ~/projects/common/vault/.aws -type f -exec ansible-vault encrypt --vault-password-file /tmp/ansible-vault-pass.txt {} \;
+git clone https://github.com/tmux-plugins/tpm /home/$USERNAME/.tmux/plugins/tpm
+find /home/$USERNAME/projects/common/vault/.ssh -type f -exec ansible-vault encrypt --vault-password-file /tmp/ansible-vault-pass.txt {} \;
+find /home/$USERNAME/projects/common/vault/.aws -type f -exec ansible-vault encrypt --vault-password-file /tmp/ansible-vault-pass.txt {} \;
 rm /tmp/ansible-vault-pass.txt
+
+# common
+# personal
+# ip812
+# avalon
+# work
 EOF
 
-# Zsh
+# tmux
+touch "/home/$USERNAME/.tmux/last_session"
+
+# zsh
 chsh -s "$(which zsh)" "$USERNAME"
 
-# Docker
+# docker
 usermod -aG docker "$USERNAME"
 newgrp docker
