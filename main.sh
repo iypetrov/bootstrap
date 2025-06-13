@@ -14,7 +14,6 @@ fi
 
 # Dependencies
 apt update
-wget -P /tmp/delta https://github.com/dandavison/delta/releases/download/0.18.1/git-delta_0.18.1_arm64.deb
 apt install -y \
   curl \
   unzip \
@@ -34,26 +33,28 @@ apt install -y \
   lazygit \
   docker.io \
   silversearcher-ag \
-  bat
+  bat \
+  jq \
+  yq
 
-apt install -y /tmp/delta
+# asdf
+git clone https://github.com/asdf-vm/asdf.git /home/$USERNAME/.asdf --branch v0.11.0
+source ~/.zshrc
+asdf plugin add delta 
+asdf plugin add nodejs 
+asdf plugin add python
+asdf plugin add java 
+asdf plugin add golang 
+asdf plugin add awscli 
+asdf plugin add kubectl 
+asdf plugin add terraform 
 
 # tmux
 touch /home/$USERNAME/.tmux/last_session
 
-# aws
-wget -P /tmp/awscliv2 https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip
-mv /tmp/awscliv2/*.zip /tmp/awscliv2/awscliv2.zip
-unzip /tmp/awscliv2/awscliv2.zip -d /tmp/awscliv2
-/tmp/awscliv2/aws/install
-
 # docker
 usermod -aG docker "$USERNAME"
 newgrp docker
-
-# kubectl
-curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/arm64/kubectl.sha256"
-install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 
 # User 
 if ! id "$USERNAME" &>/dev/null; then
