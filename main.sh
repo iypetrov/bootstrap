@@ -57,7 +57,7 @@ ln -sfn /home/$USERNAME/projects/common/vault/.ssh /home/$USERNAME
 ln -sfn /home/$USERNAME/projects/common/vault/.aws /home/$USERNAME
 git clone https://${GH_USERNAME}:${GH_PAT}@github.com/iypetrov/.dotfiles.git /home/$USERNAME/projects/common/.dotfiles
 cd /home/$USERNAME/projects/common
-stow --target=/home/ipetrov .dotfiles
+stow --target=/home/$USERNAME/.dotfiles
 git clone https://github.com/tmux-plugins/tpm /home/$USERNAME/.tmux/plugins/tpm
 find /home/$USERNAME/projects/common/vault/.ssh -type f -exec ansible-vault encrypt --vault-password-file /tmp/ansible-vault-pass.txt {} \;
 find /home/$USERNAME/projects/common/vault/.aws -type f -exec ansible-vault encrypt --vault-password-file /tmp/ansible-vault-pass.txt {} \;
