@@ -96,6 +96,7 @@ rm /tmp/ansible-vault-pass.txt
 # git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrestricted/infrastructure/salt/pillar.git
 
 git clone https://github.com/asdf-vm/asdf.git /home/$USERNAME/.asdf --branch v0.11.0
+echo ". $HOME/.asdf/asdf.sh" >> /home/$USERNAME/.bashrc/.bashrc
 source /home/$USERNAME/.bashrc
 asdf plugin add delta
 asdf plugin add nodejs
