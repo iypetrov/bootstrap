@@ -40,6 +40,7 @@ echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" > "/etc/sudoers.d/$USERNAME"
 chmod 0440 "/etc/sudoers.d/$USERNAME"
 
 # setup
+rm -rf /home/$USERNAME/.bashrc
 rm -rf /home/$USERNAME/.ssh
 git clone https://github.com/tmux-plugins/tpm /home/$USERNAME/.tmux/plugins/tpm
 mkdir -p /home/$USERNAME/projects/common /home/$USERNAME/projects/personal /home/$USERNAME/projects/ip812 /home/$USERNAME/projects/avalon /home/$USERNAME/projects/work
