@@ -34,11 +34,12 @@ apt install -y \
   lazygit \
   docker.io \
   silversearcher-ag \
-  /tmp/delta \
   bat
 
+apt install -y /tmp/delta
+
 # tmux
-touch "/home/$USERNAME/.tmux/last_session"
+touch /home/$USERNAME/.tmux/last_session
 
 # aws
 wget -P /tmp/awscliv2 https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip
