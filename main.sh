@@ -84,7 +84,7 @@ git clone git@github.com:avalonpharma/avalon-ui.git
 git clone git@github.com:avalonpharma/avalon-rest.git
 
 # work
-CPX_USERNAME="ilia.petrov"Add commentMore actions
+CPX_USERNAME="ilia.petrov"
 CPX_PAT="$(cat /home/$USERNAME/projects/common/vault/auth_codes/cpx-gitlab.txt)"
 cd /home/$USERNAME/projects/work
 git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrestricted/infrastructure/terraform/tf-de-gasx.git
