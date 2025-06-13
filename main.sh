@@ -60,40 +60,40 @@ cd /home/$USERNAME/projects/common/.dotfiles
 git remote set-url origin git@github.com:iypetrov/.dotfiles.git
 rm /tmp/ansible-vault-pass.txt
 
-# common
-cd /home/$USERNAME/projects/common
-git clone git@github.com:iypetrov/books.git
-
-# personal
-cd /home/$USERNAME/projects/personal
-git clone git@github.com:iypetrov/go-playground.git
-git clone git@github.com:iypetrov/aws-playground.git
-git clone git@github.com:iypetrov/k8s-playground.git
-git clone git@github.com:iypetrov/lambdas.git
-
-# ip812
-cd /home/$USERNAME/projects/ip812
-git clone git@github.com:ip812/infra.git
-git clone git@github.com:ip812/go-template.git
-git clone git@github.com:ip812/lambdas.git
-
-# avalon
-cd /home/$USERNAME/projects/avalon
-git clone git@github.com:avalonpharma/infra.git
-git clone git@github.com:avalonpharma/avalon-ui.git
-git clone git@github.com:avalonpharma/avalon-rest.git
-
-# work
-CPX_USERNAME="ilia.petrov"
-CPX_PAT="$(cat /home/$USERNAME/projects/common/vault/auth_codes/cpx-gitlab.txt)"
-cd /home/$USERNAME/projects/work
-git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrestricted/infrastructure/terraform/tf-de-gasx.git
-git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrestricted/infrastructure/terraform/tf-de-lab52.git
-git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrestricted/infrastructure/terraform/tf-de-lab12.git
-git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrestricted/infrastructure/terraform/tf-de-lab09.git
-git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrestricted/infrastructure/terraform/tf-ci-library.git
-git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrestricted/infrastructure/salt/salt.git
-git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrestricted/infrastructure/salt/pillar.git
+# # common
+# cd /home/$USERNAME/projects/common
+# git clone git@github.com:iypetrov/books.git
+# 
+# # personal
+# cd /home/$USERNAME/projects/personal
+# git clone git@github.com:iypetrov/go-playground.git
+# git clone git@github.com:iypetrov/aws-playground.git
+# git clone git@github.com:iypetrov/k8s-playground.git
+# git clone git@github.com:iypetrov/lambdas.git
+# 
+# # ip812
+# cd /home/$USERNAME/projects/ip812
+# git clone git@github.com:ip812/infra.git
+# git clone git@github.com:ip812/go-template.git
+# git clone git@github.com:ip812/lambdas.git
+# 
+# # avalon
+# cd /home/$USERNAME/projects/avalon
+# git clone git@github.com:avalonpharma/infra.git
+# git clone git@github.com:avalonpharma/avalon-ui.git
+# git clone git@github.com:avalonpharma/avalon-rest.git
+# 
+# # work
+# CPX_USERNAME="ilia.petrov"
+# CPX_PAT="$(cat /home/$USERNAME/projects/common/vault/auth_codes/cpx-gitlab.txt)"
+# cd /home/$USERNAME/projects/work
+# git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrestricted/infrastructure/terraform/tf-de-gasx.git
+# git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrestricted/infrastructure/terraform/tf-de-lab52.git
+# git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrestricted/infrastructure/terraform/tf-de-lab12.git
+# git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrestricted/infrastructure/terraform/tf-de-lab09.git
+# git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrestricted/infrastructure/terraform/tf-ci-library.git
+# git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrestricted/infrastructure/salt/salt.git
+# git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrestricted/infrastructure/salt/pillar.git
 
 git clone https://github.com/asdf-vm/asdf.git /home/$USERNAME/.asdf --branch v0.11.0
 source /home/$USERNAME/.bashrc
