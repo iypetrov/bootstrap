@@ -98,6 +98,17 @@ git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrest
 git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrestricted/infrastructure/terraform/tf-ci-library.git
 git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrestricted/infrastructure/salt/salt.git
 git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrestricted/infrastructure/salt/pillar.git
+
+git clone https://github.com/asdf-vm/asdf.git /home/$USERNAME/.asdf --branch v0.11.0
+asdf plugin add delta
+asdf plugin add nodejs
+asdf plugin add python
+asdf plugin add java
+asdf plugin add golang
+asdf plugin add awscli
+asdf plugin add kubectl
+asdf plugin add terraform
+asdf install
 EOF
 
 # tmux
