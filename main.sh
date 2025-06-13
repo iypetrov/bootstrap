@@ -37,18 +37,6 @@ apt install -y \
   jq \
   yq
 
-# asdf
-git clone https://github.com/asdf-vm/asdf.git /home/$USERNAME/.asdf --branch v0.11.0
-source ~/.zshrc
-asdf plugin add delta 
-asdf plugin add nodejs 
-asdf plugin add python
-asdf plugin add java 
-asdf plugin add golang 
-asdf plugin add awscli 
-asdf plugin add kubectl 
-asdf plugin add terraform 
-
 # tmux
 touch /home/$USERNAME/.tmux/last_session
 
@@ -68,7 +56,6 @@ chmod 0440 "/etc/sudoers.d/$USERNAME"
 mv /projects/common/bootstrap /home/$USERNAME/projects/common/bootstrap
 sudo -u "$USERNAME" bash << EOF
 # setup
-asdf install
 rm -rf /home/$USERNAME/.ssh
 rm -rf /home/$USERNAME/.tmux/plugins/tpm
 git clone https://github.com/tmux-plugins/tpm /home/$USERNAME/.tmux/plugins/tpm
@@ -125,6 +112,19 @@ git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrest
 git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrestricted/infrastructure/terraform/tf-ci-library.git
 git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrestricted/infrastructure/salt/salt.git
 git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrestricted/infrastructure/salt/pillar.git
+
+# asdf
+git clone https://github.com/asdf-vm/asdf.git /home/$USERNAME/.asdf --branch v0.11.0
+source ~/.zshrc
+asdf plugin add delta 
+asdf plugin add nodejs 
+asdf plugin add python
+asdf plugin add java 
+asdf plugin add golang 
+asdf plugin add awscli 
+asdf plugin add kubectl 
+asdf plugin add terraform 
+asdf install
 EOF
 
 # zsh
