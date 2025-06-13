@@ -21,7 +21,7 @@ apt install -y \
   stow \
   ansible \
   sudo \
-  vim \
+  vim-gtk3 \
   tmux \
   fzf \
   build-essential \
@@ -33,16 +33,8 @@ apt install -y \
   lazygit \
   docker.io \
   silversearcher-ag \
-  bat \
   jq \
   yq
-
-# tmux
-touch /home/$USERNAME/.tmux/last_session
-
-# docker
-usermod -aG docker "$USERNAME"
-newgrp docker
 
 # User 
 if ! id "$USERNAME" &>/dev/null; then
@@ -53,7 +45,6 @@ echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" > "/etc/sudoers.d/$USERNAME"
 chmod 0440 "/etc/sudoers.d/$USERNAME"
 
 # Setup projects
-mv /projects/common/bootstrap /home/$USERNAME/projects/common/bootstrap
 sudo -u "$USERNAME" bash << EOF
 # setup
 rm -rf /home/$USERNAME/.ssh
@@ -70,8 +61,8 @@ git clone https://${GH_USERNAME}:${GH_PAT}@github.com/iypetrov/.dotfiles.git /ho
 cd /home/$USERNAME/projects/common
 stow --target=/home/$USERNAME/.dotfiles
 git clone https://github.com/tmux-plugins/tpm /home/$USERNAME/.tmux/plugins/tpm
-cd /home/$USERNAME/projects/common/bootstrap
-git remote set-url origin git@github.com:iypetrov/bootstrap.git
+find /home/$USERNAME/projects/common/vault/.ssh -type f -exec ansible-vault encrypt --vault-password-file /tmp/ansible-vault-pass.txt {} \;
+find /home/$USERNAME/projects/common/vault/.aws -type f -exec ansible-vault encrypt --vault-password-file /tmp/ansible-vault-pass.txt {} \;
 cd /home/$USERNAME/projects/common/vault
 git remote set-url origin git@github.com:iypetrov/vault.git
 cd /home/$USERNAME/projects/common/.dotfiles
@@ -79,53 +70,19 @@ git remote set-url origin git@github.com:iypetrov/.dotfiles.git
 rm /tmp/ansible-vault-pass.txt
 
 # common
-cd /home/$USERNAME/projects/common
-git clone git@github.com:iypetrov/books.git
-
 # personal
-cd /home/$USERNAME/projects/personal
-git clone git@github.com:iypetrov/go-playground.git
-git clone git@github.com:iypetrov/aws-playground.git
-git clone git@github.com:iypetrov/k8s-playground.git
-git clone git@github.com:iypetrov/lambdas.git
-
 # ip812
-cd /home/$USERNAME/projects/ip812
-git clone git@github.com:ip812/infra.git
-git clone git@github.com:ip812/go-template.git
-git clone git@github.com:ip812/lambdas.git
-
 # avalon
-cd /home/$USERNAME/projects/avalon
-git clone git@github.com:avalonpharma/infra.git
-git clone git@github.com:avalonpharma/avalon-ui.git
-git clone git@github.com:avalonpharma/avalon-rest.git
-
 # work
-CPX_USERNAME="ilia.petrov"
-CPX_PAT="$(cat /home/$USERNAME/projects/common/vault/auth_codes/cpx-gitlab.txt)"
-cd /home/$USERNAME/projects/work
-git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrestricted/infrastructure/terraform/tf-de-gasx.git
-git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrestricted/infrastructure/terraform/tf-de-lab52.git
-git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrestricted/infrastructure/terraform/tf-de-lab12.git
-git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrestricted/infrastructure/terraform/tf-de-lab09.git
-git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrestricted/infrastructure/terraform/tf-ci-library.git
-git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrestricted/infrastructure/salt/salt.git
-git clone https://$CPX_USERNAME:$CPX_PAT@innersource.soprasteria.com/ENER-GXrestricted/infrastructure/salt/pillar.git
-
-# asdf
-git clone https://github.com/asdf-vm/asdf.git /home/$USERNAME/.asdf --branch v0.11.0
-source ~/.zshrc
-asdf plugin add delta 
-asdf plugin add nodejs 
-asdf plugin add python
-asdf plugin add java 
-asdf plugin add golang 
-asdf plugin add awscli 
-asdf plugin add kubectl 
-asdf plugin add terraform 
-asdf install
 EOF
+
+# tmux
+touch "/home/$USERNAME/.tmux/last_session"
 
 # zsh
 chsh -s "$(which zsh)" "$USERNAME"
+
+# docker
+usermod -aG docker "$USERNAME"
+newgrp docker
+
